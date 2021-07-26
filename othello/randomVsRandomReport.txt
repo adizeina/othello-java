@@ -1,0 +1,93 @@
+RandomVSRandom Report
+
+1) What is your conclusion, does the first or
+second player have some advantage, at least for a random strategy? 
+
+Random class allows you make a move by seeing all the possible moves the player can make so the first player. This is why I can say that
+the first player has an advantage. However since this is not a perfect game, and it is random moves, a bad move by player1 can give 
+player2 an upper-hand and vice versa.  
+
+When learning how to play the game, the strategy often shared is to try to place your token in the corners of the board and that 
+guarantees your win, unless random player1 or player2 manages to randomly place their tokens there then they automatically get the upper 
+hand. 
+
+
+2) Watch https://www.youtube.com/watch?v=Iq9DzN6mvYA
+
+3) Briefly write your thoughts on the above video below:
+I was very confused throughout the majority of the video, I dont know the target audience but i'm concluding the speaker left the audience
+with their jaws open. There is a much simpler way of deciphering statistics and explaining direct simulation, shuffling, bootstrapping 
+and cross validation with simpler explanations, since I had to pause to read and understand the formulas (binomial distribution, 
+standard error formulas, null hypothesis etc) and definitions he used. 
+
+I however enjoyed the merge between code and statistics. His aim from the beggining was to show that statistics can be made easier with 
+programming language (he explained the binomial distribution of a coin toss in 4 slides and explained it in code in 4 lines). 
+I also enjoyed how he incorporated Dr.Seus. 
+
+4) H0 is player #1 which has the advantage in RandomvsRandom 
+
+5) Ha is the player #2 which has the lesser advantage in RandomvsRandom 
+
+6) Choose one of the following and delete the other:
+   My experimental results support H0, so they do not support Ha
+   
+  
+7) As in the video, use either math or code (add a Java Class) to argue for or against H0
+To explain this we can use the binomial. 
+
+I will explain this using a Java class: 
+
+(extra notes-things to remember) For a variable to be a binomial random variable, ALL of the following conditions must be met:
+
+--There are a fixed number of games played (a fixed sample size).
+--On each game, the event of interest either occurs or does not.
+--The probability of occurrence (or not) is the same on each game.
+--Each game is independent of the other.
+
+import java.util.*; 
+  
+class BinomialRandomProbability{ 
+
+	public static void main(String[] args) 
+    { 
+        int n = 10;    // number of games played 
+        int k = 5;     // 
+        float p = (float)1.0 / 3;    //calculating the p value, assuming null hypothesis is correct
+      
+        float probability = binomialProbability(n, k, p); 
+          
+        System.out.print("Probability of " +k); 
+        System.out.print(" player1 of winning " +n); 
+        System.out.println(" times then probability of winning when being player2 " +p); 
+        System.out.println( " is = " + probability ); 
+    } 
+    public static int nCr(int player1, int player2) {        // since nCr == nC(n-r) 
+        if (player1 > player2 / 2)     //this is to decrease number of iterations 
+            r = n - r; 
+      
+        int advantage = 1; 
+        for (int i = 1; i <= r; i++) { 
+            advantage *= (player1- player2 + i); 
+            advantage /= i; 
+        } 
+      
+        return advantage; 
+    } 
+      
+    // now this function will calculate binomial in terms of probability 
+    
+    public static float binomialProbability(int n, int k, float p){ 
+    //n = number of games
+    //p = probability of success in each game
+    //k = probability of success in each game
+        
+        return nCr(n, k) * (float)Math.pow(p, k) * (float)Math.pow(1 - p, n - k);    
+        
+        //here we need to import Math package to help us calculate percentage for probablility pf player 1 vs player 2 winning othello. 
+        
+    } 
+} 
+
+References: 
+https://www.thoughtco.com/null-hypothesis-vs-alternative-hypothesis-3126413
+https://www.geeksforgeeks.org/binomial-random-variables/
