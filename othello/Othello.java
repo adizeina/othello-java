@@ -3,6 +3,7 @@ package ca.utoronto.utm.assignment1.othello;
 import java.util.Random;
 
 /**
+ * Testing out
  * Capture an Othello game. This includes an OthelloBoard as well as knowledge
  * of how many moves have been made, whosTurn is next (OthelloBoard.P1 or
  * OthelloBoard.P2). It knows how to make a move using the board and can tell
